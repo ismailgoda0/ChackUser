@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فحص اسم المستخدم</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- رابط أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>فحص اسم المستخدم</h1>
+        <p>ادخل اسم المستخدم للتحقق من وجوده على المنصات التالية:</p>
+
+        <!-- مربع البحث -->
+        <div class="search-box">
+            <input type="text" id="username" placeholder="أدخل اسم المستخدم">
+            <button onclick="checkUsername()">بحث</button>
+        </div>
+
+        <!-- قائمة المنصات -->
+        <ul class="platforms-list" id="platforms-list">
+            <!-- المنصات ستضاف هنا بشكل تلقائي عبر JavaScript -->
+        </ul>
+    </div>
+
+    <!-- استيراد الملفات JavaScript -->
+    <script src="platforms.js"></script> <!-- بيانات المنصات -->
+    <script src="RenderPlatforms.js"></script> <!-- عرض المنصات -->
+    <script src="checkUsername.js"></script> <!-- التحقق من اسم المستخدم -->
+</body>
+
+</html>
