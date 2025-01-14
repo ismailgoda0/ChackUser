@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="styles.css">
     <!-- رابط أيقونات Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -17,20 +20,52 @@
 
         <!-- مربع البحث -->
         <div class="search-box">
-            <input type="text" id="username" placeholder="أدخل اسم المستخدم">
-            <button onclick="checkUsername()">بحث</button>
+            <input type="text" id="input_username" placeholder="Check Username">
+            <span class="platform-maxLength">
+                - <span class="Length">0</span>
+            </span>
+            <button class="Chack-btn" onclick="checkUsername()">Check</button>
         </div>
 
         <!-- قائمة المنصات -->
         <ul class="platforms-list" id="platforms-list">
-            <!-- المنصات ستضاف هنا بشكل تلقائي عبر JavaScript -->
+
+            <!-- <ul class="platforms-list" id="platforms-list">
+                <li class="item" data-platform="YouTube" data-url="https://www.youtube.com" data-username=""
+                    onclick="retryCheck('youtube')">
+                    <div class="icon">
+                        <i class="fab fa-youtube Social" style="color: #FF0000;"></i>
+                    </div>
+                    <div class="platform-info">
+                        <div>
+                            <span class="platform-maxLength">Max(
+                                <span class="Length">30</span>
+                                )
+                            </span>
+                            <span class="platform-name">YouTube</span>
+
+                        </div>
+                        <span class="platform-Username">@Username</span>
+
+                    </div>
+
+
+                    <span class="msg" id="youtube-msg">(حدث خطأ)</span>
+                    <div class="status" id="youtube-status">
+                        <i class="fas status fa-exclamation-circle"></i>
+                    </div>
+                </li>
+            </ul> -->
+
+
+
+
+
         </ul>
     </div>
+    <script src="checkUsername.js"></script>
+    <script src="platforms.js"></script>
 
-    <!-- استيراد الملفات JavaScript -->
-    <script src="platforms.js"></script> <!-- بيانات المنصات -->
-    <script src="RenderPlatforms.js"></script> <!-- عرض المنصات -->
-    <script src="checkUsername.js"></script> <!-- التحقق من اسم المستخدم -->
 </body>
 
 </html>
