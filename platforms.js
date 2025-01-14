@@ -7,29 +7,39 @@ const messages = {
 };
 
 
+// async function checkYouTube(platform, input_username) {
+//     try {
+//         const response = await fetch(platform.ChackUrl(input_username));
+//         const data = await response.json();
+//         return data.items && data.items.length > 0;
+//     } catch (error) {
+//         console.error("Error checking YouTube:", error);
+//         throw new Error(messages.Error);
+//     }
+// }
+
+// دالة التحقق من TikTok
 async function checkYouTube(platform, input_username) {
     try {
-        const response = await fetch(platform.ChackUrl(input_username));
-        const data = await response.json();
-        return data.items && data.items.length > 0;
+        // بناء رابط القناة
+        const channelUrl = `https://www.youtube.com/${platform.Prefix}${input_username}`;
+
+        // إرسال طلب HTTP لتحميل الصفحة
+        const response = await fetch(channelUrl);
+
+        // إذا كان الرد غير ناجح (مثل 404 Not Found)
+        if (!response.ok) {
+            throw new Error(`القناة غير موجودة: ${response.status}`);
+        }
+
+        // إذا كان الرد ناجحًا (200 OK)
+        return true;
     } catch (error) {
         console.error("Error checking YouTube:", error);
         throw new Error(messages.Error);
     }
 }
 
-// دالة التحقق من TikTok
-async function checkTikTok(platform, input_username) {
-    try {
-        const response = await fetch(platform.ChackUrl(input_username));
-        return response.ok; // إذا كان الرد ناجحًا (HTTP status 200-299)
-    } catch (error) {
-        console.error("Error checking TikTok:", error);
-        throw new Error(messages.Error);
-    }
-}
-
-const YOUTUBE_API_KEY = "AIzaSyCnpKuYFCpKCFioaYnjMhhsYN_QH_HJBp8";
 const platforms = [
     {
         name: "YouTube",
@@ -46,25 +56,25 @@ const platforms = [
             return `https://www.youtube.com/${this.Prefix}${input_username}`;
         },
         ChackUrl: (input_username) =>
-            `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${input_username}&type=channel&key=${YOUTUBE_API_KEY}`,
+            `https://www.youtube.com/${this.Prefix}${input_username}`,
     },
-    // {
-    //     name: "TikTok",
-    //     icon: "fab fa-tiktok",
-    //     color: "#000000",
-    //     checkFunction: checkTikTok,
-    //     Url: 'https://www.tiktok.com',
-    //     Prefix: "@",
-    //     maxLength: 24,
-    //     username: function (input_username) {
-    //         return `${this.Prefix}${input_username}`;
-    //     },
-    //     profileUrl: function (input_username) {
-    //         return `https://www.tiktok.com/@${input_username}`;
-    //     },
-    //     ChackUrl: (input_username) => `https://www.tiktok.com/@${input_username}`,
-    // }
 ];
+// {
+//     name: "TikTok",
+//     icon: "fab fa-tiktok",
+//     color: "#000000",
+//     checkFunction: checkTikTok,
+//     Url: 'https://www.tiktok.com',
+//     Prefix: "@",
+//     maxLength: 24,
+//     username: function (input_username) {
+//         return `${this.Prefix}${input_username}`;
+//     },
+//     profileUrl: function (input_username) {
+//         return `https://www.tiktok.com/@${input_username}`;
+//     },
+//     ChackUrl: (input_username) => `https://www.tiktok.com/@${input_username}`,
+// }
 function renderPlatforms() {
     const platformsList = document.getElementById("platforms-list");
     platformsList.innerHTML = platforms
